@@ -1,6 +1,6 @@
 <template>
     <header>
-        <div class="logo">LOGO</div>
+        <div class="logo"><router-link to="/">LOGO</router-link> </div>
         <ul class="menu">
             <li>
                 <router-link to="/">首页</router-link>
@@ -33,10 +33,13 @@
         background: pink;
         display: flex;
         padding: 16px;
-        position: relative;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 10;
         justify-content: center;
         align-items: center;
-        z-index: 10;
 
         > .logo {
             max-width: 6em;
