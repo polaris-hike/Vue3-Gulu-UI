@@ -1,18 +1,14 @@
 <template>
-  <div>
-    <router-link to="/">首页</router-link>
-    <router-link to="/button">button</router-link>
-  </div>
   <router-view></router-view>
 </template>
 
-<script>
-import HelloWorld from './components/HelloWorld.vue'
-
+<script lang="ts">
+  import {ref,provide} from 'vue'
 export default {
   name: 'App',
-  components: {
-    HelloWorld
+  setup(){
+    const asideVisible = ref(false);
+    provide('asideVisible',asideVisible)
   }
 }
 </script>

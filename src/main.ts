@@ -1,8 +1,8 @@
 import {createApp} from 'vue';
 import App from './App.vue';
-import HelloWorld from './components/HelloWorld.vue';
-import Button from './components/Button.vue';
-import './index.css';
+import Home from './views/Home.vue';
+import Doc from './views/Doc.vue';
+import './index.scss';
 import {createWebHashHistory, createRouter} from 'vue-router';
 
 const history = createWebHashHistory();
@@ -10,15 +10,15 @@ const router = createRouter({
     history: history,
     routes: [
         {
-            path: '/', component: HelloWorld
+            path: '/', component: Home
         },
         {
-            path: '/button', component: Button
+            path: '/doc', component: Doc
         }
     ]
 });
 
-const app =createApp(App)
-app.use(router)
+const app = createApp(App);
+app.use(router);
 app.mount('#app');
 
