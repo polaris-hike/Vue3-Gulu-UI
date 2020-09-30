@@ -3,8 +3,12 @@
 </template>
 
 <script>
+    import Dialog from "../libs/Dialog.vue";
     export default {
-        name: "Dialog"
+        name: "DialogDemo",
+        components:{
+            Dialog
+        }
     }
 </script>
 

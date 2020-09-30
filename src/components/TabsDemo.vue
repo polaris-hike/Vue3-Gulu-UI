@@ -3,8 +3,12 @@
 </template>
 
 <script>
+    import Tabs from "../libs/Tabs.vue";
     export default {
-        name: "Tabs"
+        name: "TabsDemo",
+        components:{
+            Tabs
+        }
     }
 </script>
 
