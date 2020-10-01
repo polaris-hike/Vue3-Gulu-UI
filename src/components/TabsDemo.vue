@@ -11,12 +11,13 @@
     import Tabs from "../libs/Tabs.vue";
     import Tab from "../libs/Tab.vue";
     import {ref} from 'vue'
+
     export default {
         name: "TabsDemo",
-        components:{
-            Tabs,Tab
+        components: {
+            Tabs, Tab
         },
-        setup(){
+        setup() {
             const selected = ref('导航1')
             return {selected}
         }
