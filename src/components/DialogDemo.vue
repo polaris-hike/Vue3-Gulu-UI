@@ -6,11 +6,14 @@
         <p>第一行</p>
         <p>第二行</p>
     </Dialog>
+    <h1>示例二</h1>
+    <Button @click="showDialog">toggle</Button>
 </template>
 
 <script lang="ts">
     import Dialog from "../libs/Dialog.vue";
     import Button from '../libs/Button.vue';
+    import openDialog from '../libs/openDialog';
     import  {ref} from 'vue';
     export default {
         name: "DialogDemo",
@@ -19,7 +22,19 @@
         },
         setup(){
             const visible = ref(false);
-            return {visible}
+            const showDialog = ()=>{
+                openDialog({
+                    title:'test',
+                    content:"xxxxx",
+                    ok(){
+                        console.log('ok');
+                    },
+                    cancel(){
+                        console.log('cancel');
+                    }
+                })
+            }
+            return {visible,showDialog}
         }
     }
 </script>

@@ -28,9 +28,9 @@
             Button,
         },
         props: {
-            title:{
-              type:String,
-              default:'Dialog 标题'
+            title: {
+                type: String,
+                default: 'Dialog 标题'
             },
             visible: {
                 type: Boolean,
@@ -40,11 +40,11 @@
                 type: Boolean,
                 default: true
             },
-            ok:{
-                type:Function
+            ok: {
+                type: Function
             },
-            cancel:{
-                type:Function
+            cancel: {
+                type: Function
             },
         },
         setup(props, context) {
@@ -57,15 +57,15 @@
                 }
             };
             const ok = () => {
-                if(props.ok?.() !== false){
+                if (props.ok?.() !== false) {
                     close();
                 }
             };
             const cancel = () => {
-                context.emit('cancel');
+                props.cancel?.();
                 close();
             };
-            return {close, overlayClick,ok,cancel};
+            return {close, overlayClick, ok, cancel};
         }
     };
 </script>
