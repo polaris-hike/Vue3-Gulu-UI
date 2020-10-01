@@ -2,7 +2,15 @@
     <div>Dialog 示例</div>
     <h1>示例1</h1>
     <Button @click="visible = true">toggle</Button>
-    <Dialog :visible="visible"></Dialog>
+    <Dialog v-model:visible="visible" :close-on-out-side="false">
+        <template v-slot:title>
+            <strong>标题</strong>
+        </template>
+        <template v-slot:content>
+            <strong>第一行</strong>
+            <strong>第二行</strong>
+        </template>
+    </Dialog>
 </template>
 
 <script lang="ts">

@@ -1,16 +1,15 @@
 <template>
     <template v-if="visible">
-        <div class="gulu-dialog-overlay"></div>
+        <div class="gulu-dialog-overlay" @click="overlayClick"></div>
         <div class="gulu-dialog-wrapper">
             <div class="gulu-dialog">
-                <header>标题 <span class="gulu-dialog-close"></span></header>
+                <header><slot name="title"></slot> <span @click="close" class="gulu-dialog-close"></span></header>
                 <main>
-                    <p>第一行字</p>
-                    <p>第二行字</p>
+                    <slot name="content">></slot>
                 </main>
                 <footer>
-                    <Button level="main">OK</Button>
-                    <Button>Cancel</Button>
+                    <Button level="main" @click="ok">OK</Button>
+                    <Button @click="cancel">Cancel</Button>
                 </footer>
             </div>
         </div>
@@ -19,16 +18,51 @@
 </template>
 
 <script lang="ts">
-    import Button from "./Button.vue";
+    import Button from './Button.vue';
+
     export default {
         components: {
             Button,
         },
-        props:{
-            visible:{
-                type:Boolean,
-                default:false
-            }
+        props: {
+            title:{
+              type:String,
+              default:'Dialog 标题'
+            },
+            visible: {
+                type: Boolean,
+                default: false
+            },
+            closeOnOutSide: {
+                type: Boolean,
+                default: true
+            },
+            ok:{
+                type:Function
+            },
+            cancel:{
+                type:Function
+            },
+        },
+        setup(props, context) {
+            const close = () => {
+                context.emit('update:visible', !props.visible);
+            };
+            const overlayClick = () => {
+                if (props.closeOnOutSide) {
+                    close();
+                }
+            };
+            const ok = () => {
+                if(props.ok?.() !== false){
+                    close();
+                }
+            };
+            const cancel = () => {
+                context.emit('cancel');
+                close();
+            };
+            return {close, overlayClick,ok,cancel};
         }
     };
 </script>
@@ -42,6 +76,7 @@
         box-shadow: 0 0 3px fade_out(black, 0.5);
         min-width: 15em;
         max-width: 90%;
+
         &-overlay {
             position: fixed;
             top: 0;
@@ -51,6 +86,7 @@
             background: fade_out(black, 0.5);
             z-index: 10;
         }
+
         &-wrapper {
             position: fixed;
             left: 50%;
@@ -58,7 +94,8 @@
             transform: translate(-50%, -50%);
             z-index: 11;
         }
-        >header {
+
+        > header {
             padding: 12px 16px;
             border-bottom: 1px solid $border-color;
             display: flex;
@@ -66,20 +103,24 @@
             justify-content: space-between;
             font-size: 20px;
         }
-        >main {
+
+        > main {
             padding: 12px 16px;
         }
-        >footer {
+
+        > footer {
             border-top: 1px solid $border-color;
             padding: 12px 16px;
             text-align: right;
         }
+
         &-close {
             position: relative;
             display: inline-block;
             width: 16px;
             height: 16px;
             cursor: pointer;
+
             &::before,
             &::after {
                 content: '';
@@ -90,9 +131,11 @@
                 top: 50%;
                 left: 50%;
             }
+
             &::before {
                 transform: translate(-50%, -50%) rotate(-45deg);
             }
+
             &::after {
                 transform: translate(-50%, -50%) rotate(45deg);
             }
