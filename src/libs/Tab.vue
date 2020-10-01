@@ -1,5 +1,5 @@
 <template>
-    Tab 组件
+    <slot></slot>
 </template>
 
 <script>
