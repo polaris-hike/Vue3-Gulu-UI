@@ -1,5 +1,6 @@
 
 import "./libs/gulu.scss";
+import "./libs/svg.js";
 import "./index.scss";
 import {createApp} from 'vue';
 import App from './App.vue';
