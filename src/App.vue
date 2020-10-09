@@ -10,11 +10,11 @@
         name: 'App',
         setup() {
             const width = document.documentElement.clientWidth;
-            const asideVisible = ref(width > 500);
-            provide('asideVisible', asideVisible);
+            const menuVisible = ref(width > 500);
+            provide('menuVisible', menuVisible);
             router.afterEach(() => {
                 if (width <= 500) {
-                    asideVisible.value = false;
+                    menuVisible.value = false;
                 }
             });
         }

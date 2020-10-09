@@ -1,42 +1,40 @@
 <template>
     <div>Dialog 示例</div>
-    <h1>示例1</h1>
-    <Button @click="visible = true">toggle</Button>
-    <Dialog v-model:visible="visible" title="验证码" :close-on-out-side="false">
-        <p>第一行</p>
-        <p>第二行</p>
-    </Dialog>
-    <h1>示例二</h1>
-    <Button @click="showDialog">toggle</Button>
+    <Demo :component="Dialog1"></Demo>
+    <Demo :component="Dialog2"></Demo>
 </template>
 
 <script lang="ts">
-    import Dialog from "../libs/Dialog.vue";
+    import Dialog1 from './Dialog1.vue';
+    import Dialog2 from './Dialog2.vue';
+    import Demo from './Demo.vue';
+    import Dialog from '../libs/Dialog.vue';
     import Button from '../libs/Button.vue';
     import openDialog from '../libs/openDialog';
-    import  {ref} from 'vue';
+    import {ref} from 'vue';
+
     export default {
-        name: "DialogDemo",
-        components:{
-            Dialog,Button
+        name: 'DialogDemo',
+        components: {
+            Dialog, Button,Demo
         },
-        setup(){
+        setup() {
             const visible = ref(false);
-            const showDialog = ()=>{
+            const showDialog = () => {
                 openDialog({
-                    title:'test',
-                    content:"xxxxx",
-                    ok(){
+                    title: 'test',
+                    content: 'xxxxx',
+                    ok() {
                         console.log('ok');
                     },
-                    cancel(){
+                    cancel() {
                         console.log('cancel');
                     }
-                })
-            }
-            return {visible,showDialog}
+                });
+            };
+            return {visible, showDialog,Dialog1,Dialog2};
         }
-    }
+    };
 </script>
 
 <style scoped>

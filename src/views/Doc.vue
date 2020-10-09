@@ -3,7 +3,7 @@
     <div class="layout">
         <TopNav toggleMenuButtonVisible class="nav" />
         <div class="content">
-            <aside v-show="asideVisible">
+            <aside v-show="menuVisible">
                 <h2>文档</h2>
                 <ol>
                     <li>
@@ -48,22 +48,21 @@
             TopNav
         },
         setup(){
-            const asideVisible = inject('asideVisible'); //get 拿到数据
-            return {asideVisible}
+            const menuVisible = inject('menuVisible'); //get 拿到数据
+            return {menuVisible}
         }
     }
 </script>
-
 <style lang="scss" scoped>
-
+    $aside-index : 10;
     .layout {
         display: flex;
         flex-direction: column;
         height: 100vh;
-        > .nav {
+        >.nav {
             flex-shrink: 0;
         }
-        > .content {
+        >.content {
             flex-grow: 1;
             padding-top: 60px;
             padding-left: 156px;
@@ -74,36 +73,38 @@
     }
     .content {
         display: flex;
-        > aside {
+        >aside {
             flex-shrink: 0;
         }
-        > main {
+        >main {
             flex-grow: 1;
             padding: 16px;
+            background: white;
         }
     }
     aside {
         background: lightblue;
         width: 150px;
+        padding: 16px 0;
         position: fixed;
         top: 0;
         left: 0;
         padding-top: 70px;
         height: 100%;
-        > h2 {
+        z-index: $aside-index;
+        >h2 {
             margin-bottom: 4px;
             padding: 0 16px;
         }
-        > ol {
-            > li {
-                padding: 4px 0;
-                > a {
+        >ol {
+            >li {
+                >a {
                     display: block;
                     padding: 4px 16px;
                     text-decoration: none;
-                    &.router-link-active {
-                       background-color: white;
-                    }
+                }
+                .router-link-active {
+                    background: white;
                 }
             }
         }

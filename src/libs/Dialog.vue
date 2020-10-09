@@ -24,6 +24,7 @@
     import Button from './Button.vue';
 
     export default {
+        name:'Dialog',
         components: {
             Button,
         },
