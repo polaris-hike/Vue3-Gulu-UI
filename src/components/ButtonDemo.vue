@@ -22,10 +22,7 @@
             Button,Demo
         },
         setup(){
-            const onClick = ()=>{
-                console.log('hello world');
-            }
-            return {onClick,Button1,Button2,Button3,Button4,Button5}
+            return {Button1,Button2,Button3,Button4,Button5}
         }
     };
 </script>
